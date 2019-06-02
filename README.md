@@ -37,12 +37,26 @@ npm run serve
 ```
 npm run dist
 ```
+
 3. Add environment variables to Dotenv (optional)
 - modify wp-config.php:
 ```
+require_once __DIR__ . '/wp-content/themes/THEME_NAME/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::create(__DIR__. '/wp-content/themes/THEME_NAME/');
+$dotenv->load();
 ```
-- add .env file to theme directory
+- add .env file to theme directory (example)
 ```
+DB_NAME=wordpress
+DB_USER=homestead
+DB_PASSWORD=secret
+DB_HOST=localhost
+DB_PREFIX=wp_
+```
+- change wp-config.php MySQL settings to
+```
+define( 'DB_NAME', getenv('DB_NAME') );
+etc.
 ```
 
 [Find out more](https://rareloop.com)
